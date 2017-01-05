@@ -71,5 +71,43 @@ dateFormatter.dateFormat = "EEEE, dd MM yyyy HH:mm:ss zzz"
 newDate = dateFormatter.date(from: dateAsString)
 
 
+////////////////////////////////////////
+////Working With NSDateComponents///////
+////////////////////////////////////////
+//you might have to get the day and the month values from a date, or the hour and minutes from the time use is the NSDateComponents class.
+
+let calendar = NSCalendar.current
+
+let dateComponentss = calendar.dateComponents([.day, .month, .year, .weekOfYear, .hour, .minute, .second, .nanosecond], from: currentDate as Date)
+
+print("day = \(dateComponentss.day!)", "month = \(dateComponentss.month!)", "year = \(dateComponentss.year!)", "week of year = \(dateComponentss.weekOfYear!)", "hour = \(dateComponentss.hour!)", "minute = \(dateComponentss.minute!)", "second = \(dateComponentss.second!)", "nanosecond = \(dateComponentss.nanosecond!)" , separator: ", ", terminator: "")
+
+// Converting NSDateComponents to NSDate
+let components = NSDateComponents()
+components.day = 5
+components.month = 01
+components.year = 2016
+components.hour = 19
+components.minute = 30
+newDate = calendar.date(from: components as DateComponents)
+
+// GMT = Greenwich Mean Time
+components.timeZone = NSTimeZone(abbreviation: "GMT") as TimeZone?
+newDate = calendar.date(from: components as DateComponents)
+
+// CST = China Standard Time
+components.timeZone = NSTimeZone(abbreviation: "CST") as TimeZone?
+newDate = calendar.date(from: components as DateComponents)
+
+// CET = Central European Time
+components.timeZone = NSTimeZone(abbreviation: "CET") as TimeZone?
+newDate = calendar.date(from: components as DateComponents)
+
+
+
+
+
+
+
 
 
