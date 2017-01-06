@@ -80,7 +80,7 @@ let calendar = NSCalendar.current
 
 let dateComponentss = calendar.dateComponents([.day, .month, .year, .weekOfYear, .hour, .minute, .second, .nanosecond], from: currentDate as Date)
 
-print("day = \(dateComponentss.day!)", "month = \(dateComponentss.month!)", "year = \(dateComponentss.year!)", "week of year = \(dateComponentss.weekOfYear!)", "hour = \(dateComponentss.hour!)", "minute = \(dateComponentss.minute!)", "second = \(dateComponentss.second!)", "nanosecond = \(dateComponentss.nanosecond!)" , separator: ", ", terminator: "")
+print("day = \(dateComponentss.day!)", "month = \(dateComponentss.month!)", "year = \(dateComponentss.year!)", "week of year = \(dateComponentss.weekOfYear!)", "hour = \(dateComponentss.hour!)", "minute = \(dateComponentss.minute!)", "second = \(dateComponentss.second!)", "nanosecond = \(dateComponentss.nanosecond!)" , separator: ", ", terminator: "\n")
 
 // Converting NSDateComponents to NSDate
 let components = NSDateComponents()
@@ -104,6 +104,41 @@ components.timeZone = NSTimeZone(abbreviation: "CET") as TimeZone?
 newDate = calendar.date(from: components as DateComponents)
 
 
+
+/////////////////////////////////////////
+////// Comparing Date and Time //////////
+/////////////////////////////////////////
+
+dateFormatter.dateFormat = "MMM dd, yyyy zzz"
+dateAsString = "Oct 08, 2015 GMT"
+var date1 = dateFormatter.date(from: dateAsString)! as NSDate
+
+dateAsString = "Oct 10, 2015 GMT"
+var date2 = dateFormatter.date(from: dateAsString)! as NSDate
+
+// Comparing dates - Method #1
+print("Earlier date is: \(date1.earlierDate(date2 as Date))\n")
+
+print("Later date is : \(date2.laterDate(date1 as Date))")
+
+
+// comparing dates - Method #2
+if date1.compare(date2 as Date) == ComparisonResult.orderedDescending {
+    print("Date1 is later than Date2")
+} else if date1.compare(date2 as Date) == ComparisonResult.orderedAscending {
+    print("Date1 is Earlier than Date2")
+} else if date1.compare(date2 as Date) == ComparisonResult.orderedSame {
+    print("Same Dates")
+}
+
+// comparing dates - Method #3
+if date1.timeIntervalSinceReferenceDate > date2.timeIntervalSinceReferenceDate {
+    print("Date1 is Later than Date2")
+} else if date1.timeIntervalSinceReferenceDate < date2.timeIntervalSinceReferenceDate {
+    print("Date1 is Earlier than Date2")
+} else {
+    print("Same dates")
+}
 
 
 
