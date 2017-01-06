@@ -175,4 +175,14 @@ newDateComponents.day = daysToAdd
 calculatedDate = Calendar.current.date(byAdding: newDateComponents as DateComponents, to: currentDate as Date)
 
 // Method #3
+// Not recommanded for big periods of time, because it can produce wrong results because of leap seconds, leap years, daylight saving time, and so on
+let hoursToAddInSeconds: TimeInterval = 90 * 60
+calculatedDate = currentDate.addingTimeInterval(hoursToAddInSeconds) as Date
+
+// Find a date in the past
+let numberOfDays = -5684718
+calculatedDate = Calendar.current.date(byAdding: .day, value: numberOfDays, to: currentDate as Date)
+
+dateFormatter.dateFormat = "EEEE, MMM dd, yyyy GGG"
+dateAsString = dateFormatter.string(from: calculatedDate!)
 
