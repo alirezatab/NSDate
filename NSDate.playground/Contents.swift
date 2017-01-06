@@ -186,3 +186,41 @@ calculatedDate = Calendar.current.date(byAdding: .day, value: numberOfDays, to: 
 dateFormatter.dateFormat = "EEEE, MMM dd, yyyy GGG"
 dateAsString = dateFormatter.string(from: calculatedDate!)
 
+
+dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+dateAsString = "2015-10-08 14:25:37"
+date1 = dateFormatter.date(from: dateAsString)! as NSDate
+
+dateAsString = "2018-03-05 08:14:19"
+date2 = dateFormatter.date(from: dateAsString)! as NSDate
+
+// Method #1
+// Note that in case the first date is later than the second date, then the values are returned as negative numbers.
+let diffDateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date1 as Date, to: date2 as Date)
+
+print("The difference between dates is: \(diffDateComponents.year!) years, \(diffDateComponents.month!) months, \(diffDateComponents.day!) days, \(diffDateComponents.hour!) hours, \(diffDateComponents.minute!) minutes, \(diffDateComponents.second!) seconds")
+
+let dateComponentsFormatter = DateComponentsFormatter()
+dateComponentsFormatter.unitsStyle = DateComponentsFormatter.UnitsStyle.full
+
+// Method #2
+let interval = date2.timeIntervalSince(date1 as Date)
+dateComponentsFormatter.string(from: interval)
+
+// Method #3
+dateComponentsFormatter.allowedUnits = [.year, .month, .day, .hour, .minute, .second]
+let autoFormattedDifference = dateComponentsFormatter.string(from: date1 as Date, to: date2 as Date)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
