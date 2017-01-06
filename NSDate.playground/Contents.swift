@@ -158,6 +158,14 @@ if date1.earlierDate(date2 as Date) == date1 as Date {
     print("\(date2) is earlier than \(date1)")
 }
 
+print(currentDate)
+
+let monthsToAdd = 2
+let daysToAdd = 5
+
+// Metod #1
+var calculatedDate = Calendar.current.date(byAdding: .month, value: monthsToAdd, to: currentDate as Date)
+calculatedDate = Calendar.current.date(byAdding: .day, value: daysToAdd, to: calculatedDate!)
 
 
 
