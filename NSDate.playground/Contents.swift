@@ -167,5 +167,12 @@ let daysToAdd = 5
 var calculatedDate = Calendar.current.date(byAdding: .month, value: monthsToAdd, to: currentDate as Date)
 calculatedDate = Calendar.current.date(byAdding: .day, value: daysToAdd, to: calculatedDate!)
 
+// Method #2
+let newDateComponents = NSDateComponents()
+newDateComponents.month = monthsToAdd
+newDateComponents.day = daysToAdd
 
+calculatedDate = Calendar.current.date(byAdding: newDateComponents as DateComponents, to: currentDate as Date)
+
+// Method #3
 
