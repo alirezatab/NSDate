@@ -140,8 +140,23 @@ if date1.timeIntervalSinceReferenceDate > date2.timeIntervalSinceReferenceDate {
     print("Same dates")
 }
 
+// comparing time
+dateFormatter.dateFormat = "HH:mm:ss zzz"
+dateAsString = "14:28:16 GMT"
+date1 = dateFormatter.date(from: dateAsString)! as NSDate
 
+dateAsString = "19:53:12 GMT"
+date2 = dateFormatter.date(from: dateAsString)! as NSDate
 
+if date1.earlierDate(date2 as Date) == date1 as Date {
+    if date1.isEqual(to: date2 as Date) {
+        print("Same Time")
+    } else {
+        print("\(date1) is earlier than \(date2)")
+    }
+} else {
+    print("\(date2) is earlier than \(date1)")
+}
 
 
 
